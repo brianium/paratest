@@ -12,7 +12,6 @@ use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\FilterMapper;
 use PHPUnit\TextUI\XmlConfiguration\Configuration;
 use PHPUnit\TextUI\XmlConfiguration\PhpHandler;
 use PHPUnit\TextUI\XmlConfiguration\TestSuite;
-use PHPUnit\Util\FileLoader;
 use PHPUnit\Util\Test;
 use ReflectionMethod;
 use RuntimeException;
@@ -470,7 +469,7 @@ final class SuiteLoader
             return;
         }
 
-        FileLoader::checkAndLoad($bootstrap);
+        include_once $bootstrap;
     }
 
     private function warmCoverageCache(): void

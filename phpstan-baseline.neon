@@ -31,15 +31,6 @@ parameters:
 			path: src/Logging/JUnit/Writer.php
 
 		-
-			message:
-				"""
-					#^Instantiation of deprecated class PHPUnit\\\\Runner\\\\StandardTestSuiteLoader\\:
-					see https\\://github\\.com/sebastianbergmann/phpunit/issues/4039$#
-				"""
-			count: 1
-			path: src/Parser/Parser.php
-
-		-
 			message: "#^Only booleans are allowed in a negated boolean, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
@@ -195,11 +186,12 @@ parameters:
 			path: src/Runners/PHPUnit/SuiteLoader.php
 
 		-
-			message:
-				"""
-					#^Usage of deprecated trait PHPUnit\\\\Framework\\\\TestListenerDefaultImplementation in class ParaTest\\\\Runners\\\\PHPUnit\\\\Worker\\\\NullPhpunitPrinter\\:
-					The `TestListener` interface is deprecated$#
-				"""
+			message: "#^Method ParaTest\\\\Runners\\\\PHPUnit\\\\Worker\\\\NullPhpunitPrinter\\:\\:startTestSuite\\(\\) has parameter \\$suite with no value type specified in iterable type PHPUnit\\\\Framework\\\\TestSuite\\.$#"
+			count: 1
+			path: src/Runners/PHPUnit/Worker/NullPhpunitPrinter.php
+
+		-
+			message: "#^Method ParaTest\\\\Runners\\\\PHPUnit\\\\Worker\\\\NullPhpunitPrinter\\:\\:endTestSuite\\(\\) has parameter \\$suite with no value type specified in iterable type PHPUnit\\\\Framework\\\\TestSuite\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Worker/NullPhpunitPrinter.php
 

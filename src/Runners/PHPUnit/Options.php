@@ -212,7 +212,7 @@ final class Options
     /** @var string|null */
     private $logTeamcity;
     /** @var string|null */
-    private $whitelist;
+    private $coverageFilter;
     /** @var string */
     private $tmpDir;
     /** @var string */
@@ -264,7 +264,7 @@ final class Options
         array $testsuite,
         string $tmpDir,
         int $verbosity,
-        ?string $whitelist,
+        ?string $coverageFilter,
         string $orderBy,
         int $randomOrderSeed,
         int $repeat
@@ -302,7 +302,7 @@ final class Options
         $this->testsuite         = $testsuite;
         $this->tmpDir            = $tmpDir;
         $this->verbosity         = $verbosity;
-        $this->whitelist         = $whitelist;
+        $this->coverageFilter    = $coverageFilter;
         $this->orderBy           = $orderBy;
         $this->randomOrderSeed   = $randomOrderSeed;
         $this->repeat            = $repeat;
@@ -319,6 +319,7 @@ final class Options
         assert($options['coverage-clover'] === null || is_string($options['coverage-clover']));
         assert($options['coverage-cobertura'] === null || is_string($options['coverage-cobertura']));
         assert($options['coverage-crap4j'] === null || is_string($options['coverage-crap4j']));
+        assert($options['coverage-filter'] === null || is_string($options['coverage-filter']));
         assert($options['coverage-html'] === null || is_string($options['coverage-html']));
         assert($options['coverage-php'] === null || is_string($options['coverage-php']));
         assert($options['coverage-text'] === false || $options['coverage-text'] === null || is_string($options['coverage-text']));
@@ -338,7 +339,6 @@ final class Options
         assert(is_string($options['runner']));
         assert(is_bool($options['stop-on-failure']));
         assert(is_string($options['tmp-dir']));
-        assert($options['whitelist'] === null || is_string($options['whitelist']));
         assert($options['repeat'] === null || is_string($options['repeat']));
 
         if ($options['path'] === null) {
@@ -426,8 +426,8 @@ final class Options
             $filtered['exclude-group'] = implode(',', $excludeGroup);
         }
 
-        if (is_string($options['whitelist'])) {
-            $filtered['whitelist'] = $options['whitelist'];
+        if (is_string($options['coverage-filter'])) {
+            $filtered['coverage-filter'] = $options['coverage-filter'];
         }
 
         if (is_string($options['repeat'])) {
@@ -554,7 +554,7 @@ final class Options
             $testsuite,
             $options['tmp-dir'],
             $verbosity,
-            $options['whitelist'],
+            $options['coverage-filter'],
             $options['order-by'] ?? self::ORDER_DEFAULT,
             (int) $options['random-order-seed'],
             (int) $options['repeat']
@@ -622,6 +622,12 @@ final class Options
                 null,
                 InputOption::VALUE_REQUIRED,
                 'Generate code coverage report in Crap4J XML format.'
+            ),
+            new InputOption(
+                'coverage-filter',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Directory to add to the coverage filter.'
             ),
             new InputOption(
                 'coverage-html',
@@ -798,12 +804,6 @@ final class Options
                 'v|vv',
                 InputOption::VALUE_NONE,
                 'Increase the verbosity of messages: 1 for normal output, 2 for more verbose output'
-            ),
-            new InputOption(
-                'whitelist',
-                null,
-                InputOption::VALUE_REQUIRED,
-                'Directory to add to the coverage whitelist.'
             ),
         ]);
     }
@@ -1098,9 +1098,9 @@ final class Options
         return $this->tmpDir;
     }
 
-    public function whitelist(): ?string
+    public function coverageFilter(): ?string
     {
-        return $this->whitelist;
+        return $this->coverageFilter;
     }
 
     public function orderBy(): string

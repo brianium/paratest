@@ -18,6 +18,7 @@ static-analysis: vendor
 .PHONY: test
 test: vendor
 	php -d zend.assertions=1 vendor/bin/phpunit \
+		--do-not-cache-result \
 		--coverage-xml=coverage/coverage-xml \
 		--coverage-html=coverage/html \
 		--log-junit=coverage/junit.xml \

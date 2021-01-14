@@ -14,38 +14,14 @@ It uses the corresponding
 [code coverage options on the underlying `phpunit` library](https://phpunit.readthedocs.io/en/7.4/code-coverage-analysis.html). 
 `phpunit` itself relies on "external" help
 to get the coverage information (usually either via `xdebug` or `phpdbg`). Further, it requires
-a correctly set-up `phpunit.xml` configuration file (including a `whitelist` filter).
+a correctly set-up `phpunit.xml` configuration file (including a `coverage` filter).
 
 ## Preparing the `phpunit.xml` configuration file
-The configuration file **must** include a `<filter>` element that specifies a `<whitelist>`, see
-- [Whitelisting Files](https://phpunit.readthedocs.io/en/7.4/code-coverage-analysis.html#whitelisting-files)
-- [Whitelisting Files for Code Coverage](https://phpunit.readthedocs.io/en/7.4/configuration.html#whitelisting-files-for-code-coverage)
+The configuration file **must** include a `<coverage>` element that specifies a `<include>`, see
+- [Including Files](https://phpunit.readthedocs.io/en/9.5/code-coverage-analysis.html#including-files)
+- [<include> element within <coverage>](https://phpunit.readthedocs.io/en/9.5/configuration.html#appendixes-configuration-coverage-include)
 
 **CAUTION: Making a mistake here is very often the reason for failing code coverage reports!**
-
-Example:
-````xml
-<?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/7.5/phpunit.xsd"
-         bootstrap="vendor/autoload.php"
-         forceCoversAnnotation="true"
-         beStrictAboutCoversAnnotation="true"
-         beStrictAboutOutputDuringTests="true"
-         beStrictAboutTodoAnnotatedTests="true"
-         verbose="true">
-    <testsuites>
-        <testsuite name="default">
-            <directory suffix="Test.php">tests</directory>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src</directory>
-        </whitelist>
-    </filter>
-</phpunit>
-````
 
 ## Code coverage with xdebug
 First, check if `xdebug` is enabled:

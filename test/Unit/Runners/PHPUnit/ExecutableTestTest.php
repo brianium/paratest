@@ -42,6 +42,7 @@ final class ExecutableTestTest extends TestBase
             '--no-extensions',
             '--a',
             'b',
+            '--do-not-cache-result',
             '--no-logging',
             '--no-coverage',
             '--printer',

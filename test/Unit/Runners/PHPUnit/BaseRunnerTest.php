@@ -32,7 +32,7 @@ final class BaseRunnerTest extends TestBase
             '--coverage-text' => null,
             '--coverage-xml' => TMP_DIR . DS . 'coverage.xml',
             '--bootstrap' => BOOTSTRAP,
-            '--whitelist' => $this->fixture('failing_tests'),
+            '--coverage-filter' => $this->fixture('failing_tests'),
         ];
     }
 

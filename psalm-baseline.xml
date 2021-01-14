@@ -41,6 +41,11 @@
       <code>is_int($padding)</code>
     </RedundantCondition>
   </file>
+  <file src="src/Runners/PHPUnit/Options.php">
+    <PossiblyInvalidArgument occurrences="1">
+      <code>$options['coverage-filter']</code>
+    </PossiblyInvalidArgument>
+  </file>
   <file src="src/Runners/PHPUnit/Runner.php">
     <MixedArgumentTypeCoercion occurrences="1">
       <code>$availableTokens</code>
