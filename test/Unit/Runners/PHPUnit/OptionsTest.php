@@ -263,7 +263,9 @@ final class OptionsTest extends TestBase
         static::assertNull($options->whitelist());
         static::assertSame(Options::ORDER_DEFAULT, $options->orderBy());
         static::assertSame(0, $options->randomOrderSeed());
+        static::assertFalse($options->teamcity());
         static::assertFalse($options->hasLogTeamcity());
+        static::assertFalse($options->needsTeamcity());
         static::assertFalse($options->hasCoverage());
         static::assertSame(0, $options->repeat());
     }
@@ -288,6 +290,7 @@ final class OptionsTest extends TestBase
             '--functional' => true,
             '--group' => 'GROUP',
             '--log-junit' => 'LOG-JUNIT',
+            '--teamcity' => true,
             '--log-teamcity' => 'LOG-TEAMCITY',
             '--max-batch-size' => 5,
             '--no-test-tokens' => true,
@@ -326,7 +329,9 @@ final class OptionsTest extends TestBase
         static::assertTrue($options->functional());
         static::assertSame(['GROUP'], $options->group());
         static::assertSame('LOG-JUNIT', $options->logJunit());
+        static::assertTrue($options->teamcity());
         static::assertSame('LOG-TEAMCITY', $options->logTeamcity());
+        static::assertTrue($options->needsTeamcity());
         static::assertSame(5, $options->maxBatchSize());
         static::assertTrue($options->noTestTokens());
         static::assertTrue($options->parallelSuite());

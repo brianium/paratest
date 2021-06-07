@@ -130,22 +130,27 @@ parameters:
 			path: src/Runners/PHPUnit/Options.php
 
 		-
-			message: "#^Parameter \\#19 \\$logTeamcity of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#19 \\$teamcity of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects bool, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
 
 		-
-			message: "#^Parameter \\#21 \\$noCoverage of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects bool, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#20 \\$logTeamcity of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
 
 		-
-			message: "#^Parameter \\#22 \\$noTestTokens of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects bool, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#22 \\$noCoverage of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects bool, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
 
 		-
-			message: "#^Parameter \\#23 \\$parallelSuite of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects bool, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#23 \\$noTestTokens of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects bool, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Runners/PHPUnit/Options.php
+
+		-
+			message: "#^Parameter \\#24 \\$parallelSuite of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects bool, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
 
@@ -155,37 +160,37 @@ parameters:
 			path: src/Runners/PHPUnit/Options.php
 
 		-
-			message: "#^Parameter \\#26 \\$path of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#27 \\$path of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
 
 		-
-			message: "#^Parameter \\#28 \\$processes of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects int, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#29 \\$processes of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects int, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
 
 		-
-			message: "#^Parameter \\#29 \\$runner of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#30 \\$runner of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
 
 		-
-			message: "#^Parameter \\#30 \\$stopOnFailure of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects bool, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#31 \\$stopOnFailure of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects bool, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
 
 		-
-			message: "#^Parameter \\#32 \\$tmpDir of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#33 \\$tmpDir of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
 
 		-
-			message: "#^Parameter \\#34 \\$whitelist of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#35 \\$whitelist of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
 
 		-
-			message: "#^Parameter \\#35 \\$orderBy of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string, array\\<string\\>\\|bool\\|int\\|string given\\.$#"
+			message: "#^Parameter \\#36 \\$orderBy of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string, array\\<string\\>\\|bool\\|int\\|string given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
 

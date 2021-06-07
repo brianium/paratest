@@ -113,6 +113,10 @@ final class ResultPrinter
     private $output;
     /** @var Options */
     private $options;
+    /** @var bool */
+    private $needsTeamcity;
+    /** @var bool */
+    private $printsTeamcity;
     /** @var resource|null */
     private $teamcityLogFileHandle;
 
@@ -121,6 +125,9 @@ final class ResultPrinter
         $this->results = $results;
         $this->output  = $output;
         $this->options = $options;
+
+        $this->printsTeamcity = $this->options->teamcity();
+        $this->needsTeamcity  = $this->options->needsTeamcity();
 
         if (($teamcityLogFile = $this->options->logTeamcity()) === null) {
             return;
@@ -234,7 +241,7 @@ final class ResultPrinter
             ), 0, $invalidArgumentException);
         }
 
-        if ($this->teamcityLogFileHandle !== null) {
+        if ($this->needsTeamcity) {
             $log_file = $test->getTeamcityTempFile();
 
             if (filesize($log_file) === 0) {
@@ -249,11 +256,21 @@ final class ResultPrinter
 
             $result = file_get_contents($log_file);
             assert($result !== false);
-            fwrite($this->teamcityLogFileHandle, $result);
+
+            if ($this->teamcityLogFileHandle !== null) {
+                fwrite($this->teamcityLogFileHandle, $result);
+            }
+
+            if ($this->printsTeamcity) {
+                $this->output->write($result);
+            }
         }
 
         $this->results->addReader($reader);
-        $this->processReaderFeedback($reader, $test->getTestCount());
+
+        if (! $this->printsTeamcity) {
+            $this->processReaderFeedback($reader, $test->getTestCount());
+        }
 
         return $reader;
     }

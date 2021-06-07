@@ -392,6 +392,18 @@ abstract class RunnerTestCase extends TestBase
         self::assertSame(66, preg_match_all('/^##teamcity/m', $content));
     }
 
+    final public function testTeamcityOutput(): void
+    {
+        $this->bareOptions = [
+            '--configuration' => $this->fixture('phpunit-passing.xml'),
+            '--teamcity' => true,
+        ];
+
+        $result = $this->runRunner();
+
+        self::assertSame(66, preg_match_all('/^##teamcity/m', $result->getOutput()));
+    }
+
     /**
      * @requires OSFAMILY Linux
      */
