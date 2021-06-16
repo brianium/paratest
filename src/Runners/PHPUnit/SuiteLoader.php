@@ -8,11 +8,13 @@ use ParaTest\Parser\NoClassInFileException;
 use ParaTest\Parser\ParsedClass;
 use ParaTest\Parser\Parser;
 use PHPUnit\Framework\ExecutionOrderDependency;
+use PHPUnit\Metadata\Api\DataProvider;
+use PHPUnit\Metadata\Api\Dependencies;
+use PHPUnit\Metadata\Api\Groups;
 use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\FilterMapper;
 use PHPUnit\TextUI\XmlConfiguration\Configuration;
 use PHPUnit\TextUI\XmlConfiguration\PhpHandler;
 use PHPUnit\TextUI\XmlConfiguration\TestSuite;
-use PHPUnit\Util\Test;
 use ReflectionMethod;
 use RuntimeException;
 use SebastianBergmann\CodeCoverage\Filter;
@@ -255,7 +257,7 @@ final class SuiteLoader
                 continue;
             }
 
-            $dependencies = Test::getDependencies($class->getName(), $method->getName());
+            $dependencies = Dependencies::dependencies($class->getName(), $method->getName());
             if (count($dependencies) !== 0) {
                 $this->addDependentTestsToBatchSet($batches, $dependencies, $tests);
             } else {
@@ -318,13 +320,13 @@ final class SuiteLoader
     {
         $result = [];
 
-        $groups = Test::getGroups($class->getName(), $method->getName());
+        $groups = (new Groups())->groups($class->getName(), $method->getName());
         if (! $this->testMatchGroupOptions($groups)) {
             return $result;
         }
 
         try {
-            $providedData = Test::getProvidedData($class->getName(), $method->getName());
+            $providedData = (new DataProvider())->providedData($class->getName(), $method->getName());
         } catch (Throwable $throwable) {
             $providedData = null;
         }

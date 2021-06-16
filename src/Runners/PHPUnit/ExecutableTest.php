@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace ParaTest\Runners\PHPUnit;
 
-use ParaTest\Runners\PHPUnit\Worker\NullPhpunitPrinter;
-
 use function array_map;
 use function array_merge;
 use function assert;
@@ -152,7 +150,7 @@ abstract class ExecutableTest
         $options['do-not-cache-result'] = null;
         $options['no-logging']          = null;
         $options['no-coverage']         = null;
-        $options['printer']             = NullPhpunitPrinter::class;
+        $options['no-output']           = null;
         $options['log-junit']           = $this->getTempFile();
 
         if ($this->needsTeamcity) {

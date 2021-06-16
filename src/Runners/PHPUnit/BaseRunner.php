@@ -23,6 +23,10 @@ use function sprintf;
  */
 abstract class BaseRunner implements RunnerInterface
 {
+    public const SUCCESS_EXIT   = 0;
+    public const FAILURE_EXIT   = 1;
+    public const EXCEPTION_EXIT = 2;
+
     protected const CYCLE_SLEEP = 10000;
 
     /** @var Options */

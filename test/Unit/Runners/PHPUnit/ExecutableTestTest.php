@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace ParaTest\Tests\Unit\Runners\PHPUnit;
 
-use ParaTest\Runners\PHPUnit\Worker\NullPhpunitPrinter;
 use ParaTest\Tests\TestBase;
 
 use function uniqid;
@@ -45,8 +44,7 @@ final class ExecutableTestTest extends TestBase
             '--do-not-cache-result',
             '--no-logging',
             '--no-coverage',
-            '--printer',
-            NullPhpunitPrinter::class,
+            '--no-output',
             '--log-junit',
             $this->executableTestChild->getTempFile(),
             '--log-teamcity',

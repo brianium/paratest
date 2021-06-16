@@ -77,7 +77,7 @@ final class BaseRunnerTest extends TestBase
             '--path' => $this->fixture('failing_tests'),
             '--coverage-text' => $file,
             '--bootstrap' => BOOTSTRAP,
-            '--whitelist' => $this->fixture('failing_tests'),
+            '--coverage-filter' => $this->fixture('failing_tests'),
         ];
 
         static::assertFileDoesNotExist($file);

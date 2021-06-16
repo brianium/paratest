@@ -617,6 +617,7 @@ final class ResultPrinter
         $lines = preg_split('/\r\n|\r|\n/', $buffer);
         assert(is_array($lines));
         $padding = max(array_map('\\strlen', $lines));
+        assert($padding !== false);
 
         $styledLines = [];
         foreach ($lines as $line) {

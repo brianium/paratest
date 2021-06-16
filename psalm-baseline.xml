@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.7.2@83a0325c0a95c0ab531d6b90c877068b464377b5">
+<files psalm-version="4.7.3@38c452ae584467e939d55377aaf83b5a26f19dd1">
   <file src="src/Logging/JUnit/Reader.php">
     <MixedArrayAccess occurrences="9">
       <code>$node['assertions']</code>
@@ -26,25 +26,16 @@
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Parser/Parser.php">
-    <DeprecatedClass occurrences="1">
-      <code>new StandardTestSuiteLoader()</code>
-    </DeprecatedClass>
-    <PropertyTypeCoercion occurrences="3">
-      <code>self::$alreadyLoadedSources</code>
+    <PropertyTypeCoercion occurrences="2">
       <code>self::$alreadyLoadedSources</code>
       <code>self::$alreadyLoadedSources[$srcPath]</code>
     </PropertyTypeCoercion>
   </file>
   <file src="src/Runners/PHPUnit/ResultPrinter.php">
-    <RedundantCondition occurrences="2">
-      <code>assert(is_int($padding))</code>
-      <code>is_int($padding)</code>
-    </RedundantCondition>
-  </file>
-  <file src="src/Runners/PHPUnit/Options.php">
-    <PossiblyInvalidArgument occurrences="1">
-      <code>$options['coverage-filter']</code>
-    </PossiblyInvalidArgument>
+    <RedundantConditionGivenDocblockType occurrences="2">
+      <code>$padding !== false</code>
+      <code>assert($padding !== false)</code>
+    </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Runners/PHPUnit/Runner.php">
     <MixedArgumentTypeCoercion occurrences="1">
@@ -52,6 +43,10 @@
     </MixedArgumentTypeCoercion>
   </file>
   <file src="src/Runners/PHPUnit/SuiteLoader.php">
+    <DeprecatedMethod occurrences="2">
+      <code>cacheDirectory</code>
+      <code>hasCacheDirectory</code>
+    </DeprecatedMethod>
     <MixedArgumentTypeCoercion occurrences="1">
       <code>$groups</code>
     </MixedArgumentTypeCoercion>
@@ -62,18 +57,13 @@
       <code>$this-&gt;files</code>
       <code>array_unique($this-&gt;files)</code>
     </MixedPropertyTypeCoercion>
+    <UnresolvableInclude occurrences="1">
+      <code>include_once $bootstrap</code>
+    </UnresolvableInclude>
     <UnusedVariable occurrences="2">
       <code>$loadedSuite</code>
       <code>$value</code>
     </UnusedVariable>
-  </file>
-  <file src="src/Runners/PHPUnit/Worker/NullPhpunitPrinter.php">
-    <DeprecatedInterface occurrences="1">
-      <code>NullPhpunitPrinter</code>
-    </DeprecatedInterface>
-    <DeprecatedTrait occurrences="1">
-      <code>TestListenerDefaultImplementation</code>
-    </DeprecatedTrait>
   </file>
   <file src="src/Runners/PHPUnit/Worker/WrapperWorker.php">
     <MixedArgument occurrences="1">

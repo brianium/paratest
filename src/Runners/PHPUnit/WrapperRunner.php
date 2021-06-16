@@ -6,7 +6,6 @@ namespace ParaTest\Runners\PHPUnit;
 
 use InvalidArgumentException;
 use ParaTest\Runners\PHPUnit\Worker\WrapperWorker;
-use PHPUnit\TextUI\TestRunner;
 
 use function array_shift;
 use function assert;
@@ -93,11 +92,11 @@ final class WrapperRunner extends BaseRunner
             return;
         }
 
-        $exitCode = TestRunner::SUCCESS_EXIT;
+        $exitCode = self::SUCCESS_EXIT;
         if ($reader->getTotalErrors() > 0) {
-            $exitCode = TestRunner::EXCEPTION_EXIT;
+            $exitCode = self::EXCEPTION_EXIT;
         } elseif ($reader->getTotalFailures() > 0 || $reader->getTotalWarnings() > 0) {
-            $exitCode = TestRunner::FAILURE_EXIT;
+            $exitCode = self::FAILURE_EXIT;
         }
 
         $this->exitcode = max($this->exitcode, $exitCode);
