@@ -2,6 +2,7 @@
 /coverage
 /test/fixtures/generated_tests
 /vendor
+/.phpunit.cache
 composer.lock
 .phpunit.result.cache
 .php_cs.cache
