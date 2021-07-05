@@ -7,7 +7,7 @@ namespace ParaTest\Runners\PHPUnit;
 use InvalidArgumentException;
 use ParaTest\Util\Str;
 use PHPUnit\TextUI\DefaultResultPrinter;
-use PHPUnit\TextUI\XmlConfiguration\Configuration;
+use PHPUnit\TextUI\XmlConfiguration\LoadedFromFileConfiguration;
 use PHPUnit\TextUI\XmlConfiguration\Loader;
 use RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
@@ -187,7 +187,7 @@ final class Options
     private $coverageTestLimit;
     /** @var string|null */
     private $bootstrap;
-    /** @var Configuration|null */
+    /** @var LoadedFromFileConfiguration|null */
     private $configuration;
     /** @var string|null */
     private $coverageClover;
@@ -233,7 +233,7 @@ final class Options
     private function __construct(
         ?string $bootstrap,
         bool $colors,
-        ?Configuration $configuration,
+        ?LoadedFromFileConfiguration $configuration,
         ?string $coverageClover,
         ?string $coverageCobertura,
         ?string $coverageCrap4j,
@@ -1033,7 +1033,7 @@ final class Options
         return $this->coverageTestLimit;
     }
 
-    public function configuration(): ?Configuration
+    public function configuration(): ?LoadedFromFileConfiguration
     {
         return $this->configuration;
     }

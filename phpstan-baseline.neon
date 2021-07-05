@@ -31,11 +31,6 @@ parameters:
 			path: src/Logging/JUnit/Writer.php
 
 		-
-			message: "#^Cannot cast array\\<string\\>\\|bool\\|int\\|string\\|null to int\\.$#"
-			count: 4
-			path: src/Runners/PHPUnit/Options.php
-
-		-
 			message: "#^Only booleans are allowed in a negated boolean, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
