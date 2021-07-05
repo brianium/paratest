@@ -21,8 +21,7 @@ use function sprintf;
  */
 final class ParaTestCommandTest extends TestBase
 {
-    /** @var CommandTester */
-    private $commandTester;
+    private CommandTester $commandTester;
 
     public function setUpTest(): void
     {

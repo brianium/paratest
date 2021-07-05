@@ -24,9 +24,9 @@ use function sprintf;
 abstract class TestBase extends PHPUnit\Framework\TestCase
 {
     /** @var class-string<RunnerInterface> */
-    protected $runnerClass = Runner::class;
+    protected string $runnerClass = Runner::class;
     /** @var array<string, string|bool|int|null> */
-    protected $bareOptions = [];
+    protected array $bareOptions = [];
 
     final protected function setUp(): void
     {

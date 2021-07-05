@@ -11,10 +11,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class EmptyRunnerStub implements RunnerInterface
 {
     public const OUTPUT = 'EmptyRunnerStub EXECUTED';
-    /** @var Options */
-    private $options;
-    /** @var OutputInterface */
-    private $output;
+    private Options $options;
+    private OutputInterface $output;
 
     public function __construct(Options $options, OutputInterface $output)
     {

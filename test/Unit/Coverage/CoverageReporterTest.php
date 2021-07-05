@@ -22,8 +22,7 @@ use function uniqid;
  */
 final class CoverageReporterTest extends TestBase
 {
-    /** @var CoverageReporter */
-    private $coverageReporter;
+    private CoverageReporter $coverageReporter;
 
     protected function setUpTest(): void
     {

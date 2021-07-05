@@ -15,8 +15,7 @@ use function uniqid;
  */
 final class ExecutableTestTest extends TestBase
 {
-    /** @var ExecutableTestChild */
-    protected $executableTestChild;
+    private ExecutableTestChild $executableTestChild;
 
     public function setUpTest(): void
     {

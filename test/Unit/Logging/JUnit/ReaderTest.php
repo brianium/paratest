@@ -24,16 +24,11 @@ use function implode;
  */
 final class ReaderTest extends TestBase
 {
-    /** @var string  */
-    private $mixedPath;
-    /** @var Reader  */
-    private $mixed;
-    /** @var Reader  */
-    private $single;
-    /** @var Reader  */
-    private $empty;
-    /** @var Reader  */
-    private $multi_errors;
+    private string $mixedPath;
+    private Reader $mixed;
+    private Reader $single;
+    private Reader $empty;
+    private Reader $multi_errors;
 
     public function setUpTest(): void
     {

@@ -24,10 +24,9 @@ use function uniqid;
  */
 final class OptionsTest extends TestBase
 {
-    /** @var Options */
-    private $options;
+    private Options $options;
     /** @var array<string, mixed>  */
-    private $unfiltered;
+    private array $unfiltered;
 
     public function setUpTest(): void
     {

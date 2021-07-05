@@ -13,22 +13,14 @@ use function file_put_contents;
 
 abstract class ResultTester extends TestBase
 {
-    /** @var Suite */
-    protected $failureSuite;
-    /** @var Suite */
-    protected $otherErrorSuite;
-    /** @var Suite */
-    protected $mixedSuite;
-    /** @var Suite */
-    protected $passingSuite;
-    /** @var Suite */
-    protected $dataProviderSuite;
-    /** @var Suite */
-    protected $errorSuite;
-    /** @var Suite */
-    protected $warningSuite;
-    /** @var Suite */
-    protected $skipped;
+    protected Suite $failureSuite;
+    protected Suite $otherErrorSuite;
+    protected Suite $mixedSuite;
+    protected Suite $passingSuite;
+    protected Suite $dataProviderSuite;
+    protected Suite $errorSuite;
+    protected Suite $warningSuite;
+    protected Suite $skipped;
 
     final public function setUpTest(): void
     {
