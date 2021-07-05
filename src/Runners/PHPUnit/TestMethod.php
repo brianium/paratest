@@ -26,7 +26,7 @@ final class TestMethod extends ExecutableTest
      *
      * @var string[]
      */
-    private $filters;
+    private array $filters;
 
     /**
      * Passed filters must be unescaped and must represent test name, optionally including

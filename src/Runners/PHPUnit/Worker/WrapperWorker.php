@@ -44,20 +44,14 @@ final class WrapperWorker
 
     public const COMMAND_EXIT = "EXIT\n";
 
-    /** @var ExecutableTest|null */
-    private $currentlyExecuting;
-    /** @var Process */
-    private $process;
-    /** @var int */
-    private $inExecution = 0;
-    /** @var OutputInterface */
-    private $output;
+    private ?ExecutableTest $currentlyExecuting = null;
+    private Process $process;
+    private int $inExecution = 0;
+    private OutputInterface $output;
     /** @var string[] */
-    private $commands = [];
-    /** @var string */
-    private $writeToPathname;
-    /** @var InputStream */
-    private $input;
+    private array $commands = [];
+    private string $writeToPathname;
+    private InputStream $input;
 
     public function __construct(OutputInterface $output, Options $options, int $token)
     {

@@ -19,7 +19,7 @@ use function usleep;
 final class WrapperRunner extends BaseRunner
 {
     /** @var WrapperWorker[] */
-    private $workers = [];
+    private array $workers = [];
 
     protected function beforeLoadChecks(): void
     {

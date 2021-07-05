@@ -23,38 +23,32 @@ use function trim;
  */
 final class TestCase
 {
-    /** @var string */
-    public $name;
+    public string $name;
 
-    /** @var string */
-    public $class;
+    public string $class;
 
-    /** @var string */
-    public $file;
+    public string $file;
 
-    /** @var int */
-    public $line;
+    public int $line;
 
-    /** @var int */
-    public $assertions;
+    public int $assertions;
 
-    /** @var float */
-    public $time;
+    public float $time;
 
     /** @var array<int, array{type: string, text: string}> */
-    public $errors = [];
+    public array $errors = [];
 
     /** @var array<int, array{type: string, text: string}> */
-    public $failures = [];
+    public array $failures = [];
 
     /** @var array<int, array{type: string, text: string}> */
-    public $warnings = [];
+    public array $warnings = [];
 
     /** @var array<int, array{type: string, text: string}> */
-    public $skipped = [];
+    public array $skipped = [];
 
     /** @var array<int, array{type: string, text: string}> */
-    public $risky = [];
+    public array $risky = [];
 
     public function __construct(
         string $name,

@@ -13,46 +13,37 @@ namespace ParaTest\Logging\JUnit;
  */
 final class TestSuite
 {
-    /** @var string */
-    public $name;
+    public string $name;
 
-    /** @var int */
-    public $tests;
+    public int $tests;
 
-    /** @var int */
-    public $assertions;
+    public int $assertions;
 
-    /** @var int */
-    public $failures;
+    public int $failures;
 
-    /** @var int */
-    public $errors;
+    public int $errors;
 
-    /** @var int */
-    public $warnings;
+    public int $warnings;
 
-    /** @var int */
-    public $skipped;
+    public int $skipped;
 
-    /** @var float */
-    public $time;
+    public float $time;
 
-    /** @var string */
-    public $file;
+    public string $file;
 
     /**
      * Nested suites.
      *
      * @var TestSuite[]
      */
-    public $suites = [];
+    public array $suites = [];
 
     /**
      * Cases belonging to this suite.
      *
      * @var TestCase[]
      */
-    public $cases = [];
+    public array $cases = [];
 
     public function __construct(
         string $name,

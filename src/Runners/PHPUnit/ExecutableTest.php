@@ -14,47 +14,34 @@ abstract class ExecutableTest
 {
     /**
      * The path to the test to run.
-     *
-     * @var string
      */
-    private $path;
+    private string $path;
 
     /**
      * A path to the temp JUnit file created
      * for this test.
-     *
-     * @var string|null
      */
-    private $tempJUnit;
+    private ?string $tempJUnit = null;
 
     /**
      * Path where the coveragereport is stored.
-     *
-     * @var string|null
      */
-    private $coverageFileName;
+    private ?string $coverageFileName = null;
 
     /**
      * A path to the temp Teamcity format file created
      * for this test.
-     *
-     * @var string|null
      */
-    private $tempTeamcity;
+    private ?string $tempTeamcity = null;
 
     /**
      * Last executed process command.
-     *
-     * @var string
      */
-    private $lastCommand = '';
+    private string $lastCommand = '';
 
-    /** @var bool */
-    private $needsCoverage;
-    /** @var bool */
-    private $needsTeamcity;
-    /** @var string */
-    private $tmpDir;
+    private bool $needsCoverage;
+    private bool $needsTeamcity;
+    private string $tmpDir;
 
     public function __construct(string $path, bool $needsCoverage, bool $needsTeamcity, string $tmpDir)
     {

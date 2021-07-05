@@ -82,41 +82,31 @@ final class Options
 
     /**
      * The number of processes to run at a time.
-     *
-     * @var int
      */
-    private $processes;
+    private int $processes;
 
     /**
      * The test path pointing to tests that will
      * be run.
-     *
-     * @var string|null
      */
-    private $path;
+    private ?string $path;
 
     /**
      * The path to the PHPUnit binary that will be run.
-     *
-     * @var string
      */
-    private $phpunit;
+    private string $phpunit;
 
     /**
      * Determines whether or not ParaTest runs in
      * functional mode. If enabled, ParaTest will run
      * every test method in a separate process.
-     *
-     * @var bool
      */
-    private $functional;
+    private bool $functional;
 
     /**
      * Prevents starting new tests after a test has failed.
-     *
-     * @var bool
      */
-    private $stopOnFailure;
+    private bool $stopOnFailure;
 
     /**
      * A collection of post-processed option values. This is the collection
@@ -126,14 +116,11 @@ final class Options
      */
     private $filtered;
 
-    /** @var string */
-    private $runner;
+    private string $runner;
 
-    /** @var bool */
-    private $noTestTokens;
+    private bool $noTestTokens;
 
-    /** @var bool */
-    private $colors;
+    private bool $colors;
 
     /**
      * Filters which tests to run.
@@ -142,11 +129,9 @@ final class Options
      */
     private $testsuite;
 
-    /** @var int|null */
-    private $maxBatchSize;
+    private ?int $maxBatchSize;
 
-    /** @var string|null */
-    private $filter;
+    private ?string $filter;
 
     /** @var string[] */
     private $group;
@@ -156,71 +141,48 @@ final class Options
 
     /**
      * Running the suite defined in the config in parallel.
-     *
-     * @var bool
      */
-    private $parallelSuite;
+    private bool $parallelSuite;
 
     /**
      * Strings that gets passed verbatim to the underlying phpunit command.
      *
      * @var string[]|null
      */
-    private $passthru;
+    private ?array $passthru;
 
     /**
      * Strings that gets passed verbatim to the underlying php process.
      *
      * @var string[]|null
      */
-    private $passthruPhp;
+    private ?array $passthruPhp;
 
-    /** @var int */
-    private $verbosity;
+    private int $verbosity;
 
     /**
      * Limit the number of tests recorded in coverage reports
      * to avoid them growing too big.
-     *
-     * @var int
      */
-    private $coverageTestLimit;
-    /** @var string|null */
-    private $bootstrap;
-    /** @var LoadedFromFileConfiguration|null */
-    private $configuration;
-    /** @var string|null */
-    private $coverageClover;
-    /** @var string|null */
-    private $coverageCobertura;
-    /** @var string|null */
-    private $coverageCrap4j;
-    /** @var string|null */
-    private $coverageHtml;
-    /** @var string|null */
-    private $coveragePhp;
-    /** @var string|null */
-    private $coverageText;
-    /** @var string|null */
-    private $coverageXml;
-    /** @var bool */
-    private $noCoverage;
-    /** @var string */
-    private $cwd;
-    /** @var string|null */
-    private $logJunit;
-    /** @var string|null */
-    private $logTeamcity;
-    /** @var string|null */
-    private $coverageFilter;
-    /** @var string */
-    private $tmpDir;
-    /** @var string */
-    private $orderBy;
-    /** @var int */
-    private $randomOrderSeed;
-    /** @var int */
-    private $repeat;
+    private int $coverageTestLimit;
+    private ?string $bootstrap;
+    private ?LoadedFromFileConfiguration $configuration;
+    private ?string $coverageClover;
+    private ?string $coverageCobertura;
+    private ?string $coverageCrap4j;
+    private ?string $coverageHtml;
+    private ?string $coveragePhp;
+    private ?string $coverageText;
+    private ?string $coverageXml;
+    private bool $noCoverage;
+    private string $cwd;
+    private ?string $logJunit;
+    private ?string $logTeamcity;
+    private ?string $coverageFilter;
+    private string $tmpDir;
+    private string $orderBy;
+    private int $randomOrderSeed;
+    private int $repeat;
 
     /**
      * @param array<string, string|null> $filtered

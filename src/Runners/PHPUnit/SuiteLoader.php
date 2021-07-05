@@ -12,7 +12,7 @@ use PHPUnit\Metadata\Api\DataProvider;
 use PHPUnit\Metadata\Api\Dependencies;
 use PHPUnit\Metadata\Api\Groups;
 use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\FilterMapper;
-use PHPUnit\TextUI\XmlConfiguration\Configuration;
+use PHPUnit\TextUI\XmlConfiguration\LoadedFromFileConfiguration;
 use PHPUnit\TextUI\XmlConfiguration\PhpHandler;
 use PHPUnit\TextUI\XmlConfiguration\TestSuite;
 use ReflectionMethod;
@@ -55,29 +55,21 @@ final class SuiteLoader
      *
      * @var string[]
      */
-    private $files = [];
+    private array $files = [];
 
     /** @var string[]|null */
-    private $suitesName = null;
+    private ?array $suitesName = null;
 
     /**
      * The collection of parsed test classes.
      *
      * @var array<string, ExecutableTest>
      */
-    private $loadedSuites = [];
+    private array $loadedSuites = [];
 
-    /**
-     * The configuration.
-     *
-     * @var Configuration|null
-     */
-    private $configuration;
-
-    /** @var Options */
-    private $options;
-    /** @var OutputInterface */
-    private $output;
+    private ?LoadedFromFileConfiguration $configuration;
+    private Options $options;
+    private OutputInterface $output;
 
     public function __construct(Options $options, OutputInterface $output)
     {

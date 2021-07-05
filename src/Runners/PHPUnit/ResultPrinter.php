@@ -46,73 +46,54 @@ final class ResultPrinter
      *
      * @var ExecutableTest[]
      */
-    private $suites = [];
+    private array $suites = [];
 
-    /** @var LogInterpreter */
-    private $results;
+    private LogInterpreter $results;
 
     /**
      * The number of tests results currently printed.
      * Used to determine when to tally current results
      * and start a new row.
-     *
-     * @var int
      */
-    private $numTestsWidth = 0;
+    private int $numTestsWidth = 0;
 
     /**
      * Used for formatting results to a given width.
-     *
-     * @var int
      */
-    private $maxColumn = 0;
+    private int $maxColumn = 0;
 
     /**
      * The total number of cases to be run.
-     *
-     * @var int
      */
-    private $totalCases = 0;
+    private int $totalCases = 0;
 
     /**
      * The current column being printed to.
-     *
-     * @var int
      */
-    private $column = 0;
+    private int $column = 0;
 
     /**
      * The total number of cases printed so far.
-     *
-     * @var int
      */
-    private $casesProcessed = 0;
+    private int $casesProcessed = 0;
 
     /**
      * Number of columns.
-     *
-     * @var int
      */
-    private $numberOfColumns = 80;
+    private int $numberOfColumns = 80;
 
     /**
      * Number of skipped or incomplete tests.
-     *
-     * @var int
      */
-    private $totalSkippedOrIncomplete = 0;
+    private int $totalSkippedOrIncomplete = 0;
 
     /**
      * Do we need to try to process skipped/incompleted tests.
-     *
-     * @var bool
      */
-    private $processSkipped = false;
+    private bool $processSkipped = false;
 
-    /** @var OutputInterface */
-    private $output;
-    /** @var Options */
-    private $options;
+    private OutputInterface $output;
+    private Options $options;
     /** @var resource|null */
     private $teamcityLogFileHandle;
 
