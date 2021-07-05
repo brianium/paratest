@@ -433,31 +433,13 @@ final class ResultPrinter
 
     private function printFeedbackItemColor(string $item): void
     {
-        $buffer = $item;
-        switch ($item) {
-            case 'E':
-                $buffer = $this->colorizeTextBox('fg-red, bold', $item);
-
-                break;
-
-            case 'F':
-                $buffer = $this->colorizeTextBox('bg-red, fg-white', $item);
-
-                break;
-
-            case 'W':
-            case 'I':
-            case 'R':
-                $buffer = $this->colorizeTextBox('fg-yellow, bold', $item);
-
-                break;
-
-            case 'S':
-                $buffer = $this->colorizeTextBox('fg-cyan, bold', $item);
-
-                break;
-        }
-
+        $buffer = match ($item) {
+            'E' => $this->colorizeTextBox('fg-red, bold', $item),
+            'F' => $this->colorizeTextBox('bg-red, fg-white', $item),
+            'W', 'I', 'R' => $this->colorizeTextBox('fg-yellow, bold', $item),
+            'S' => $this->colorizeTextBox('fg-cyan, bold', $item),
+            default => $item,
+        };
         $this->output->write($buffer);
     }
 

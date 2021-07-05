@@ -8,7 +8,7 @@ use function array_reduce;
 use function count;
 use function implode;
 use function preg_quote;
-use function strpos;
+use function str_contains;
 
 /**
  * Represents a set of tests grouped in batch which can be passed to a single phpunit process.
@@ -66,7 +66,7 @@ final class TestMethod extends ExecutableTest
     protected function prepareOptions(array $options): array
     {
         $re = array_reduce($this->filters, static function (?string $r, string $v): string {
-            $isDataSet = strpos($v, ' with data set ') !== false;
+            $isDataSet = str_contains($v, ' with data set ');
 
             return ($r !== null ? $r . '|' : '') . preg_quote($v, '/') . ($isDataSet ? '$' : '(?:\s|$)');
         });

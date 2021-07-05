@@ -20,13 +20,10 @@ use SebastianBergmann\CodeCoverage\Version;
  */
 final class CoverageReporter
 {
-    private CodeCoverage $coverage;
-    private ?CodeCoverageConfiguration $codeCoverageConfiguration;
-
-    public function __construct(CodeCoverage $coverage, ?CodeCoverageConfiguration $codeCoverageConfiguration)
-    {
-        $this->coverage                  = $coverage;
-        $this->codeCoverageConfiguration = $codeCoverageConfiguration;
+    public function __construct(
+        private CodeCoverage $coverage,
+        private ?CodeCoverageConfiguration $codeCoverageConfiguration
+    ) {
     }
 
     /**

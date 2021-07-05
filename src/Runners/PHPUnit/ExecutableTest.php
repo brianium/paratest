@@ -13,11 +13,6 @@ use function unlink;
 abstract class ExecutableTest
 {
     /**
-     * The path to the test to run.
-     */
-    private string $path;
-
-    /**
      * A path to the temp JUnit file created
      * for this test.
      */
@@ -39,16 +34,12 @@ abstract class ExecutableTest
      */
     private string $lastCommand = '';
 
-    private bool $needsCoverage;
-    private bool $needsTeamcity;
-    private string $tmpDir;
-
-    public function __construct(string $path, bool $needsCoverage, bool $needsTeamcity, string $tmpDir)
-    {
-        $this->path          = $path;
-        $this->needsCoverage = $needsCoverage;
-        $this->needsTeamcity = $needsTeamcity;
-        $this->tmpDir        = $tmpDir;
+    public function __construct(
+        private string $path,
+        private bool $needsCoverage,
+        private bool $needsTeamcity,
+        private string $tmpDir
+    ) {
     }
 
     /**
