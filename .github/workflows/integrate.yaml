@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         php-version:
-          - "7.4"
+          - "8.0"
 
     steps:
       - name: "Checkout"
@@ -64,7 +64,7 @@ jobs:
     strategy:
       matrix:
         php-version:
-          - "7.4"
+          - "8.0"
 
     steps:
       - name: "Checkout"
@@ -106,7 +106,6 @@ jobs:
           - "ubuntu-latest"
           - "windows-latest"
         php-version:
-          - "7.4"
           - "8.0"
         dependencies:
           - "lowest"
@@ -142,20 +141,12 @@ jobs:
         run: "composer remove --no-progress --no-update --no-scripts --dev 'ext-posix'"
 
       - name: "Install lowest dependencies"
-        if: ${{ matrix.dependencies == 'lowest' && matrix.php-version != '8.0' }}
+        if: ${{ matrix.dependencies == 'lowest' }}
         run: "composer update --no-interaction --no-progress --prefer-lowest"
 
       - name: "Install highest dependencies"
-        if: ${{ matrix.dependencies == 'highest' && matrix.php-version != '8.0' }}
+        if: ${{ matrix.dependencies == 'highest' }}
         run: "composer update --no-interaction --no-progress"
-
-      - name: "Install lowest dependencies PHP 8.0"
-        if: ${{ matrix.dependencies == 'lowest' && matrix.php-version == '8.0' }}
-        run: "composer update --no-interaction --no-progress --ignore-platform-reqs --prefer-lowest"
-
-      - name: "Install highest dependencies PHP 8.0"
-        if: ${{ matrix.dependencies == 'highest' && matrix.php-version == '8.0' }}
-        run: "composer update --no-interaction --no-progress --ignore-platform-reqs"
 
       - name: "Run tests"
         timeout-minutes: 3
@@ -169,7 +160,7 @@ jobs:
     strategy:
       matrix:
         php-version:
-          - "7.4"
+          - "8.0"
 
     steps:
       - name: "Checkout"
@@ -224,7 +215,7 @@ jobs:
     strategy:
       matrix:
         php-version:
-          - "7.4"
+          - "8.0"
 
     steps:
       - name: "Checkout"
@@ -262,7 +253,7 @@ jobs:
     strategy:
       matrix:
         php-version:
-          - "7.4"
+          - "8.0"
 
     steps:
       - name: "Checkout"
