@@ -34,8 +34,8 @@
         "phpunit/php-timer": "6.0.x-dev",
         "phpunit/phpunit": "10.0.x-dev",
         "sebastian/code-unit-reverse-lookup": "3.0.x-dev",
-        "sebastian/environment": "^6.0.x-dev",
         "sebastian/diff": "^5.0.x-dev",
+        "sebastian/environment": "^6.0.x-dev",
         "sebastian/global-state": "^6.0.x-dev",
         "sebastian/object-enumerator": "^5.0.x-dev",
         "sebastian/object-reflector": "^3.0.x-dev",
@@ -62,8 +62,7 @@
         "sebastian/type": "3.0.x-dev",
         "sebastian/version": "4.0.x-dev",
         "squizlabs/php_codesniffer": "^3.6.0",
-        "symfony/filesystem": "^5.3.0",
-        "thecodingmachine/phpstan-strict-rules": "^0.12.1"
+        "symfony/filesystem": "^5.3.0"
     },
     "config": {
         "preferred-install": {

@@ -186,11 +186,6 @@ parameters:
 			path: src/Runners/PHPUnit/SuiteLoader.php
 
 		-
-			message: "#^In method \"ParaTest\\\\Runners\\\\PHPUnit\\\\SuiteLoader\\:\\:getMethodTests\", caught \"Throwable\" must be rethrown\\. Either catch a more specific exception or add a \"throw\" clause in the \"catch\" block to propagate the exception\\. More info\\: http\\://bit\\.ly/failloud$#"
-			count: 1
-			path: src/Runners/PHPUnit/SuiteLoader.php
-
-		-
 			message: "#^Property ParaTest\\\\Runners\\\\PHPUnit\\\\Worker\\\\RunnerWorker\\:\\:\\$process type has no value type specified in iterable type Symfony\\\\Component\\\\Process\\\\Process\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Worker/RunnerWorker.php
