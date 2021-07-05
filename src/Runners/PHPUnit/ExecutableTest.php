@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace ParaTest\Runners\PHPUnit;
 
-use ParaTest\Runners\PHPUnit\Worker\NullPhpunitPrinter;
-
 use function array_map;
 use function array_merge;
 use function assert;
@@ -15,55 +13,33 @@ use function unlink;
 abstract class ExecutableTest
 {
     /**
-     * The path to the test to run.
-     *
-     * @var string
-     */
-    private $path;
-
-    /**
      * A path to the temp JUnit file created
      * for this test.
-     *
-     * @var string|null
      */
-    private $tempJUnit;
+    private ?string $tempJUnit = null;
 
     /**
      * Path where the coveragereport is stored.
-     *
-     * @var string|null
      */
-    private $coverageFileName;
+    private ?string $coverageFileName = null;
 
     /**
      * A path to the temp Teamcity format file created
      * for this test.
-     *
-     * @var string|null
      */
-    private $tempTeamcity;
+    private ?string $tempTeamcity = null;
 
     /**
      * Last executed process command.
-     *
-     * @var string
      */
-    private $lastCommand = '';
+    private string $lastCommand = '';
 
-    /** @var bool */
-    private $needsCoverage;
-    /** @var bool */
-    private $needsTeamcity;
-    /** @var string */
-    private $tmpDir;
-
-    public function __construct(string $path, bool $needsCoverage, bool $needsTeamcity, string $tmpDir)
-    {
-        $this->path          = $path;
-        $this->needsCoverage = $needsCoverage;
-        $this->needsTeamcity = $needsTeamcity;
-        $this->tmpDir        = $tmpDir;
+    public function __construct(
+        private string $path,
+        private bool $needsCoverage,
+        private bool $needsTeamcity,
+        private string $tmpDir
+    ) {
     }
 
     /**
@@ -148,11 +124,12 @@ abstract class ExecutableTest
      */
     final public function commandArguments(string $binary, array $options, ?array $passthru): array
     {
-        $options                = $this->prepareOptions($options);
-        $options['no-logging']  = null;
-        $options['no-coverage'] = null;
-        $options['printer']     = NullPhpunitPrinter::class;
-        $options['log-junit']   = $this->getTempFile();
+        $options                        = $this->prepareOptions($options);
+        $options['do-not-cache-result'] = null;
+        $options['no-logging']          = null;
+        $options['no-coverage']         = null;
+        $options['no-output']           = null;
+        $options['log-junit']           = $this->getTempFile();
 
         if ($this->needsTeamcity) {
             $options['log-teamcity'] = $this->getTeamcityTempFile();

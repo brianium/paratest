@@ -29,30 +29,22 @@ final class Writer
     /**
      * The name attribute of the testsuite being
      * written.
-     *
-     * @var string
      */
-    private $name;
+    private string $name;
 
-    /** @var LogInterpreter */
-    private $interpreter;
+    private LogInterpreter $interpreter;
 
-    /** @var DOMDocument */
-    private $document;
+    private DOMDocument $document;
 
     /**
      * A pattern for matching testsuite attributes.
-     *
-     * @var string
      */
-    private static $suiteAttrs = '/name|(?:test|assertion|failure|error|warning)s|skipped|time|file/';
+    private static string $suiteAttrs = '/name|(?:test|assertion|failure|error|warning)s|skipped|time|file/';
 
     /**
      * A pattern for matching testcase attrs.
-     *
-     * @var string
      */
-    private static $caseAttrs = '/name|class|file|line|assertions|time/';
+    private static string $caseAttrs = '/name|class|file|line|assertions|time/';
 
     public function __construct(LogInterpreter $interpreter, string $name)
     {

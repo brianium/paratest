@@ -29,8 +29,7 @@ use function uniqid;
  */
 final class SuiteLoaderTest extends TestBase
 {
-    /** @var BufferedOutput */
-    private $output;
+    private BufferedOutput $output;
 
     protected function setUpTest(): void
     {
@@ -170,7 +169,7 @@ final class SuiteLoaderTest extends TestBase
      */
     private function getLoadedPaths(string $path, ?SuiteLoader $loader = null): array
     {
-        $loader = $loader ?? new SuiteLoader($this->createOptionsFromArgv(['--path' => $path]), $this->output);
+        $loader ??= new SuiteLoader($this->createOptionsFromArgv(['--path' => $path]), $this->output);
         $loader->load();
         $loaded = $this->getObjectValue($loader, 'loadedSuites');
 

@@ -6,10 +6,8 @@ namespace ParaTest\Tests;
 
 final class RunnerResult
 {
-    /** @var int */
-    private $exitCode;
-    /** @var string */
-    private $output;
+    private int $exitCode;
+    private string $output;
 
     public function __construct(int $exitCode, string $output)
     {

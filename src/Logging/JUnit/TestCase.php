@@ -23,60 +23,34 @@ use function trim;
  */
 final class TestCase
 {
-    /** @var string */
-    public $name;
-
-    /** @var string */
-    public $class;
-
-    /** @var string */
-    public $file;
-
-    /** @var int */
-    public $line;
-
-    /** @var int */
-    public $assertions;
-
-    /** @var float */
-    public $time;
+    /** @var array<int, array{type: string, text: string}> */
+    public array $errors = [];
 
     /** @var array<int, array{type: string, text: string}> */
-    public $errors = [];
+    public array $failures = [];
 
     /** @var array<int, array{type: string, text: string}> */
-    public $failures = [];
+    public array $warnings = [];
 
     /** @var array<int, array{type: string, text: string}> */
-    public $warnings = [];
+    public array $skipped = [];
 
     /** @var array<int, array{type: string, text: string}> */
-    public $skipped = [];
-
-    /** @var array<int, array{type: string, text: string}> */
-    public $risky = [];
+    public array $risky = [];
 
     public function __construct(
-        string $name,
-        string $class,
-        string $file,
-        int $line,
-        int $assertions,
-        float $time
+        public string $name,
+        public string $class,
+        public string $file,
+        public int $line,
+        public int $assertions,
+        public float $time
     ) {
-        $this->name       = $name;
-        $this->class      = $class;
-        $this->file       = $file;
-        $this->line       = $line;
-        $this->assertions = $assertions;
-        $this->time       = $time;
     }
 
     /**
      * Factory method that creates a TestCase object
      * from a SimpleXMLElement.
-     *
-     * @return TestCase
      */
     public static function caseFromNode(SimpleXMLElement $node): self
     {

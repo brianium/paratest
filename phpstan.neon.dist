@@ -1,9 +1,9 @@
 includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - vendor/phpstan/phpstan-deprecation-rules/rules.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/ekino/phpstan-banned-code/extension.neon
-    - vendor/thecodingmachine/phpstan-strict-rules/phpstan-strict-rules.neon
     - phpstan-baseline.neon
 
 rules:

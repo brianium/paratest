@@ -20,12 +20,9 @@ use function unlink;
  */
 final class WriterTest extends TestBase
 {
-    /** @var Writer  */
-    protected $writer;
-    /** @var LogInterpreter */
-    protected $interpreter;
-    /** @var string  */
-    protected $passing;
+    protected Writer $writer;
+    protected LogInterpreter $interpreter;
+    protected string $passing;
 
     public function setUpTest(): void
     {

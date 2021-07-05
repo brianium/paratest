@@ -7,7 +7,7 @@ namespace ParaTest\Runners\PHPUnit;
 use InvalidArgumentException;
 use ParaTest\Util\Str;
 use PHPUnit\TextUI\DefaultResultPrinter;
-use PHPUnit\TextUI\XmlConfiguration\Configuration;
+use PHPUnit\TextUI\XmlConfiguration\LoadedFromFileConfiguration;
 use PHPUnit\TextUI\XmlConfiguration\Loader;
 use RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
@@ -82,41 +82,31 @@ final class Options
 
     /**
      * The number of processes to run at a time.
-     *
-     * @var int
      */
-    private $processes;
+    private int $processes;
 
     /**
      * The test path pointing to tests that will
      * be run.
-     *
-     * @var string|null
      */
-    private $path;
+    private ?string $path;
 
     /**
      * The path to the PHPUnit binary that will be run.
-     *
-     * @var string
      */
-    private $phpunit;
+    private string $phpunit;
 
     /**
      * Determines whether or not ParaTest runs in
      * functional mode. If enabled, ParaTest will run
      * every test method in a separate process.
-     *
-     * @var bool
      */
-    private $functional;
+    private bool $functional;
 
     /**
      * Prevents starting new tests after a test has failed.
-     *
-     * @var bool
      */
-    private $stopOnFailure;
+    private bool $stopOnFailure;
 
     /**
      * A collection of post-processed option values. This is the collection
@@ -126,14 +116,11 @@ final class Options
      */
     private $filtered;
 
-    /** @var string */
-    private $runner;
+    private string $runner;
 
-    /** @var bool */
-    private $noTestTokens;
+    private bool $noTestTokens;
 
-    /** @var bool */
-    private $colors;
+    private bool $colors;
 
     /**
      * Filters which tests to run.
@@ -142,11 +129,9 @@ final class Options
      */
     private $testsuite;
 
-    /** @var int|null */
-    private $maxBatchSize;
+    private ?int $maxBatchSize;
 
-    /** @var string|null */
-    private $filter;
+    private ?string $filter;
 
     /** @var string[] */
     private $group;
@@ -156,71 +141,48 @@ final class Options
 
     /**
      * Running the suite defined in the config in parallel.
-     *
-     * @var bool
      */
-    private $parallelSuite;
+    private bool $parallelSuite;
 
     /**
      * Strings that gets passed verbatim to the underlying phpunit command.
      *
      * @var string[]|null
      */
-    private $passthru;
+    private ?array $passthru;
 
     /**
      * Strings that gets passed verbatim to the underlying php process.
      *
      * @var string[]|null
      */
-    private $passthruPhp;
+    private ?array $passthruPhp;
 
-    /** @var int */
-    private $verbosity;
+    private int $verbosity;
 
     /**
      * Limit the number of tests recorded in coverage reports
      * to avoid them growing too big.
-     *
-     * @var int
      */
-    private $coverageTestLimit;
-    /** @var string|null */
-    private $bootstrap;
-    /** @var Configuration|null */
-    private $configuration;
-    /** @var string|null */
-    private $coverageClover;
-    /** @var string|null */
-    private $coverageCobertura;
-    /** @var string|null */
-    private $coverageCrap4j;
-    /** @var string|null */
-    private $coverageHtml;
-    /** @var string|null */
-    private $coveragePhp;
-    /** @var string|null */
-    private $coverageText;
-    /** @var string|null */
-    private $coverageXml;
-    /** @var bool */
-    private $noCoverage;
-    /** @var string */
-    private $cwd;
-    /** @var string|null */
-    private $logJunit;
-    /** @var string|null */
-    private $logTeamcity;
-    /** @var string|null */
-    private $whitelist;
-    /** @var string */
-    private $tmpDir;
-    /** @var string */
-    private $orderBy;
-    /** @var int */
-    private $randomOrderSeed;
-    /** @var int */
-    private $repeat;
+    private int $coverageTestLimit;
+    private ?string $bootstrap;
+    private ?LoadedFromFileConfiguration $configuration;
+    private ?string $coverageClover;
+    private ?string $coverageCobertura;
+    private ?string $coverageCrap4j;
+    private ?string $coverageHtml;
+    private ?string $coveragePhp;
+    private ?string $coverageText;
+    private ?string $coverageXml;
+    private bool $noCoverage;
+    private string $cwd;
+    private ?string $logJunit;
+    private ?string $logTeamcity;
+    private ?string $coverageFilter;
+    private string $tmpDir;
+    private string $orderBy;
+    private int $randomOrderSeed;
+    private int $repeat;
 
     /**
      * @param array<string, string|null> $filtered
@@ -233,7 +195,7 @@ final class Options
     private function __construct(
         ?string $bootstrap,
         bool $colors,
-        ?Configuration $configuration,
+        ?LoadedFromFileConfiguration $configuration,
         ?string $coverageClover,
         ?string $coverageCobertura,
         ?string $coverageCrap4j,
@@ -264,7 +226,7 @@ final class Options
         array $testsuite,
         string $tmpDir,
         int $verbosity,
-        ?string $whitelist,
+        ?string $coverageFilter,
         string $orderBy,
         int $randomOrderSeed,
         int $repeat
@@ -302,7 +264,7 @@ final class Options
         $this->testsuite         = $testsuite;
         $this->tmpDir            = $tmpDir;
         $this->verbosity         = $verbosity;
-        $this->whitelist         = $whitelist;
+        $this->coverageFilter    = $coverageFilter;
         $this->orderBy           = $orderBy;
         $this->randomOrderSeed   = $randomOrderSeed;
         $this->repeat            = $repeat;
@@ -319,6 +281,7 @@ final class Options
         assert($options['coverage-clover'] === null || is_string($options['coverage-clover']));
         assert($options['coverage-cobertura'] === null || is_string($options['coverage-cobertura']));
         assert($options['coverage-crap4j'] === null || is_string($options['coverage-crap4j']));
+        assert($options['coverage-filter'] === null || is_string($options['coverage-filter']));
         assert($options['coverage-html'] === null || is_string($options['coverage-html']));
         assert($options['coverage-php'] === null || is_string($options['coverage-php']));
         assert($options['coverage-text'] === false || $options['coverage-text'] === null || is_string($options['coverage-text']));
@@ -338,7 +301,6 @@ final class Options
         assert(is_string($options['runner']));
         assert(is_bool($options['stop-on-failure']));
         assert(is_string($options['tmp-dir']));
-        assert($options['whitelist'] === null || is_string($options['whitelist']));
         assert($options['repeat'] === null || is_string($options['repeat']));
 
         if ($options['path'] === null) {
@@ -426,8 +388,8 @@ final class Options
             $filtered['exclude-group'] = implode(',', $excludeGroup);
         }
 
-        if (is_string($options['whitelist'])) {
-            $filtered['whitelist'] = $options['whitelist'];
+        if (is_string($options['coverage-filter'])) {
+            $filtered['coverage-filter'] = $options['coverage-filter'];
         }
 
         if (is_string($options['repeat'])) {
@@ -554,7 +516,7 @@ final class Options
             $testsuite,
             $options['tmp-dir'],
             $verbosity,
-            $options['whitelist'],
+            $options['coverage-filter'],
             $options['order-by'] ?? self::ORDER_DEFAULT,
             (int) $options['random-order-seed'],
             (int) $options['repeat']
@@ -622,6 +584,12 @@ final class Options
                 null,
                 InputOption::VALUE_REQUIRED,
                 'Generate code coverage report in Crap4J XML format.'
+            ),
+            new InputOption(
+                'coverage-filter',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Directory to add to the coverage filter.'
             ),
             new InputOption(
                 'coverage-html',
@@ -798,12 +766,6 @@ final class Options
                 'v|vv',
                 InputOption::VALUE_NONE,
                 'Increase the verbosity of messages: 1 for normal output, 2 for more verbose output'
-            ),
-            new InputOption(
-                'whitelist',
-                null,
-                InputOption::VALUE_REQUIRED,
-                'Directory to add to the coverage whitelist.'
             ),
         ]);
     }
@@ -1033,7 +995,7 @@ final class Options
         return $this->coverageTestLimit;
     }
 
-    public function configuration(): ?Configuration
+    public function configuration(): ?LoadedFromFileConfiguration
     {
         return $this->configuration;
     }
@@ -1098,9 +1060,9 @@ final class Options
         return $this->tmpDir;
     }
 
-    public function whitelist(): ?string
+    public function coverageFilter(): ?string
     {
-        return $this->whitelist;
+        return $this->coverageFilter;
     }
 
     public function orderBy(): string

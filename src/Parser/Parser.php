@@ -8,14 +8,12 @@ use InvalidArgumentException;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Exception;
-use PHPUnit\Runner\StandardTestSuiteLoader;
+use PHPUnit\Runner\TestSuiteLoader;
 use PHPUnit\Util\Test as TestUtil;
 use ReflectionClass;
 use ReflectionMethod;
 
-use function array_diff;
 use function assert;
-use function get_declared_classes;
 use function is_file;
 use function realpath;
 
@@ -25,13 +23,10 @@ use function realpath;
 final class Parser
 {
     /** @var ReflectionClass<TestCase> */
-    private $refl;
+    private ReflectionClass $refl;
 
     /** @var ReflectionClass<TestCase>[] */
-    private static $alreadyLoadedSources = [];
-
-    /** @var class-string[]  */
-    private static $externalClassesFound = [];
+    private static array $alreadyLoadedSources = [];
 
     public function __construct(string $srcPath)
     {
@@ -43,34 +38,10 @@ final class Parser
         assert($srcPath !== false);
 
         if (! isset(self::$alreadyLoadedSources[$srcPath])) {
-            $declaredClasses = get_declared_classes();
             try {
-                self::$alreadyLoadedSources[$srcPath] = (new StandardTestSuiteLoader())->load($srcPath);
-
-                self::$externalClassesFound += array_diff(
-                    get_declared_classes(),
-                    $declaredClasses,
-                    [self::$alreadyLoadedSources[$srcPath]->getName()]
-                );
+                self::$alreadyLoadedSources[$srcPath] = (new TestSuiteLoader())->load($srcPath);
             } catch (Exception $exception) {
-                self::$externalClassesFound += array_diff(get_declared_classes(), $declaredClasses);
-
-                $reflFound = null;
-                foreach (self::$externalClassesFound as $newClass) {
-                    $refClass = new ReflectionClass($newClass);
-                    if ($refClass->getFileName() !== $srcPath) {
-                        continue;
-                    }
-
-                    $reflFound = $refClass;
-                    break;
-                }
-
-                if ($reflFound === null || ! $reflFound->isSubclassOf(TestCase::class) || $reflFound->isAbstract()) {
-                    throw new NoClassInFileException('', 0, $exception);
-                }
-
-                self::$alreadyLoadedSources[$srcPath] = $reflFound;
+                throw new NoClassInFileException('', 0, $exception);
             }
         }
 

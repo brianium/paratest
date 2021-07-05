@@ -24,10 +24,9 @@ use function uniqid;
  */
 final class OptionsTest extends TestBase
 {
-    /** @var Options */
-    private $options;
+    private Options $options;
     /** @var array<string, mixed>  */
-    private $unfiltered;
+    private array $unfiltered;
 
     public function setUpTest(): void
     {
@@ -260,7 +259,7 @@ final class OptionsTest extends TestBase
         static::assertEmpty($options->testsuite());
         static::assertSame(TMP_DIR, $options->tmpDir());
         static::assertSame(Options::VERBOSITY_NORMAL, $options->verbosity());
-        static::assertNull($options->whitelist());
+        static::assertNull($options->coverageFilter());
         static::assertSame(Options::ORDER_DEFAULT, $options->orderBy());
         static::assertSame(0, $options->randomOrderSeed());
         static::assertFalse($options->hasLogTeamcity());
@@ -301,7 +300,7 @@ final class OptionsTest extends TestBase
             '--testsuite' => 'TESTSUITE',
             '--tmp-dir' => ($tmpDir = uniqid(TMP_DIR . DS . 't')),
             '--verbose' => 2,
-            '--whitelist' => 'WHITELIST',
+            '--coverage-filter' => 'FILTER',
             '--order-by' => Options::ORDER_RANDOM,
             '--random-order-seed' => (string) $expected_random_seed,
             '--repeat' => '2',
@@ -339,7 +338,7 @@ final class OptionsTest extends TestBase
         static::assertSame(['TESTSUITE'], $options->testsuite());
         static::assertSame($tmpDir, $options->tmpDir());
         static::assertSame(Options::VERBOSITY_VERY_VERBOSE, $options->verbosity());
-        static::assertSame('WHITELIST', $options->whitelist());
+        static::assertSame('FILTER', $options->coverageFilter());
         static::assertSame(Options::ORDER_RANDOM, $options->orderBy());
         static::assertSame($expected_random_seed, $options->randomOrderSeed());
         static::assertSame(2, $options->repeat());
@@ -347,13 +346,13 @@ final class OptionsTest extends TestBase
         static::assertSame([
             'bootstrap' => 'BOOTSTRAP',
             'configuration' => $options->configuration()->filename(),
+            'coverage-filter' => 'FILTER',
             'exclude-group' => 'EXCLUDE-GROUP',
             'group' => 'GROUP',
             'order-by' => Options::ORDER_RANDOM,
             'random-order-seed' => (string) $expected_random_seed,
             'repeat' => '2',
             'stop-on-failure' => null,
-            'whitelist' => 'WHITELIST',
         ], $options->filtered());
 
         static::assertTrue($options->hasLogTeamcity());

@@ -13,67 +13,31 @@ namespace ParaTest\Logging\JUnit;
  */
 final class TestSuite
 {
-    /** @var string */
-    public $name;
-
-    /** @var int */
-    public $tests;
-
-    /** @var int */
-    public $assertions;
-
-    /** @var int */
-    public $failures;
-
-    /** @var int */
-    public $errors;
-
-    /** @var int */
-    public $warnings;
-
-    /** @var int */
-    public $skipped;
-
-    /** @var float */
-    public $time;
-
-    /** @var string */
-    public $file;
-
     /**
      * Nested suites.
      *
      * @var TestSuite[]
      */
-    public $suites = [];
+    public array $suites = [];
 
     /**
      * Cases belonging to this suite.
      *
      * @var TestCase[]
      */
-    public $cases = [];
+    public array $cases = [];
 
     public function __construct(
-        string $name,
-        int $tests,
-        int $assertions,
-        int $failures,
-        int $errors,
-        int $warnings,
-        int $skipped,
-        float $time,
-        string $file
+        public string $name,
+        public int $tests,
+        public int $assertions,
+        public int $failures,
+        public int $errors,
+        public int $warnings,
+        public int $skipped,
+        public float $time,
+        public string $file
     ) {
-        $this->name       = $name;
-        $this->tests      = $tests;
-        $this->assertions = $assertions;
-        $this->failures   = $failures;
-        $this->skipped    = $skipped;
-        $this->errors     = $errors;
-        $this->warnings   = $warnings;
-        $this->time       = $time;
-        $this->file       = $file;
     }
 
     public static function empty(): self

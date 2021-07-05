@@ -18,7 +18,7 @@ use ParaTest\Runners\PHPUnit\WrapperRunner;
 final class WrapperRunnerTest extends RunnerTestCase
 {
     /** {@inheritdoc } */
-    protected $runnerClass = WrapperRunner::class;
+    protected string $runnerClass = WrapperRunner::class;
 
     public function testWrapperRunnerNotAvailableInFunctionalMode(): void
     {

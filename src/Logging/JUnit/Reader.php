@@ -22,17 +22,15 @@ use function unlink;
  */
 final class Reader implements MetaProviderInterface
 {
-    /** @var SimpleXMLElement */
-    private $xml;
+    private SimpleXMLElement $xml;
 
-    /** @var bool */
-    private $isSingle = false;
+    private bool $isSingle = false;
 
     /** @var TestSuite[] */
-    private $suites = [];
+    private array $suites = [];
 
     /** @var string */
-    protected $logFile;
+    private $logFile;
 
     public function __construct(string $logFile)
     {

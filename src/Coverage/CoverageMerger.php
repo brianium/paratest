@@ -20,14 +20,11 @@ use function unlink;
  */
 final class CoverageMerger
 {
-    /** @var CodeCoverage|null */
-    private $coverage;
-    /** @var int */
-    private $testLimit;
+    private ?CodeCoverage $coverage = null;
 
-    public function __construct(int $testLimit)
-    {
-        $this->testLimit = $testLimit;
+    public function __construct(
+        private int $testLimit
+    ) {
     }
 
     private function addCoverage(CodeCoverage $coverage): void

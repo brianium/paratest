@@ -6,7 +6,6 @@ namespace ParaTest\Runners\PHPUnit;
 
 use Exception;
 use ParaTest\Runners\PHPUnit\Worker\RunnerWorker;
-use PHPUnit\TextUI\TestRunner;
 
 use function array_shift;
 use function assert;
@@ -26,7 +25,7 @@ final class Runner extends BaseRunner
      *
      * @var RunnerWorker[]
      */
-    private $running = [];
+    private array $running = [];
 
     /**
      * The money maker. Runs all ExecutableTest objects in separate processes.
@@ -99,8 +98,8 @@ final class Runner extends BaseRunner
 
         if (
             $this->exitcode > 0
-            && $this->exitcode !== TestRunner::FAILURE_EXIT
-            && $this->exitcode !== TestRunner::EXCEPTION_EXIT
+            && $this->exitcode !== self::FAILURE_EXIT
+            && $this->exitcode !== self::EXCEPTION_EXIT
         ) {
             throw $worker->getWorkerCrashedException();
         }

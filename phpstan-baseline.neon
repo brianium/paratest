@@ -16,12 +16,12 @@ parameters:
 			path: bin/phpunit-wrapper.php
 
 		-
-			message: "#^Variable property access on SimpleXMLElement\\.$#"
+			message: "#^Variable property access on ParaTest\\\\Logging\\\\JUnit\\\\TestCase\\.$#"
 			count: 1
 			path: src/Logging/JUnit/TestCase.php
 
 		-
-			message: "#^Variable property access on ParaTest\\\\Logging\\\\JUnit\\\\TestCase\\.$#"
+			message: "#^Variable property access on SimpleXMLElement\\.$#"
 			count: 1
 			path: src/Logging/JUnit/TestCase.php
 
@@ -31,26 +31,12 @@ parameters:
 			path: src/Logging/JUnit/Writer.php
 
 		-
-			message:
-				"""
-					#^Instantiation of deprecated class PHPUnit\\\\Runner\\\\StandardTestSuiteLoader\\:
-					see https\\://github\\.com/sebastianbergmann/phpunit/issues/4039$#
-				"""
-			count: 1
-			path: src/Parser/Parser.php
-
-		-
 			message: "#^Only booleans are allowed in a negated boolean, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
 
 		-
 			message: "#^Only booleans are allowed in an if condition, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
-			count: 1
-			path: src/Runners/PHPUnit/Options.php
-
-		-
-			message: "#^Parameter \\#1 \\$configuration of static method ParaTest\\\\Runners\\\\PHPUnit\\\\Options\\:\\:guessConfigurationFile\\(\\) expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
 
@@ -65,42 +51,17 @@ parameters:
 			path: src/Runners/PHPUnit/Options.php
 
 		-
-			message: "#^Parameter \\#2 \\$colors of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects bool, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$configuration of static method ParaTest\\\\Runners\\\\PHPUnit\\\\Options\\:\\:guessConfigurationFile\\(\\) expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
 
 		-
-			message: "#^Parameter \\#4 \\$coverageClover of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
-			count: 1
+			message: "#^Parameter \\#1 \\$param of static method ParaTest\\\\Runners\\\\PHPUnit\\\\Options\\:\\:parsePassthru\\(\\) expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			count: 2
 			path: src/Runners/PHPUnit/Options.php
 
 		-
-			message: "#^Parameter \\#5 \\$coverageCobertura of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
-			count: 1
-			path: src/Runners/PHPUnit/Options.php
-
-		-
-			message: "#^Parameter \\#6 \\$coverageCrap4j of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
-			count: 1
-			path: src/Runners/PHPUnit/Options.php
-
-		-
-			message: "#^Parameter \\#7 \\$coverageHtml of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
-			count: 1
-			path: src/Runners/PHPUnit/Options.php
-
-		-
-			message: "#^Parameter \\#8 \\$coveragePhp of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
-			count: 1
-			path: src/Runners/PHPUnit/Options.php
-
-		-
-			message: "#^Cannot cast array\\<string\\>\\|bool\\|int\\|string\\|null to int\\.$#"
-			count: 4
-			path: src/Runners/PHPUnit/Options.php
-
-		-
-			message: "#^Parameter \\#10 \\$coverageText of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string|null, array\\<string\\>\\|int\\|string\\|true\\|null given\\.$#"
+			message: "#^Parameter \\#10 \\$coverageText of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|int\\|string\\|true\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
 
@@ -135,6 +96,11 @@ parameters:
 			path: src/Runners/PHPUnit/Options.php
 
 		-
+			message: "#^Parameter \\#2 \\$colors of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects bool, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Runners/PHPUnit/Options.php
+
+		-
 			message: "#^Parameter \\#21 \\$noCoverage of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects bool, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
@@ -147,11 +113,6 @@ parameters:
 		-
 			message: "#^Parameter \\#23 \\$parallelSuite of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects bool, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
-			path: src/Runners/PHPUnit/Options.php
-
-		-
-			message: "#^Parameter \\#1 \\$param of static method ParaTest\\\\Runners\\\\PHPUnit\\\\Options\\:\\:parsePassthru\\(\\) expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
-			count: 2
 			path: src/Runners/PHPUnit/Options.php
 
 		-
@@ -180,7 +141,7 @@ parameters:
 			path: src/Runners/PHPUnit/Options.php
 
 		-
-			message: "#^Parameter \\#34 \\$whitelist of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#34 \\$coverageFilter of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Options.php
 
@@ -190,18 +151,39 @@ parameters:
 			path: src/Runners/PHPUnit/Options.php
 
 		-
-			message: "#^In method \"ParaTest\\\\Runners\\\\PHPUnit\\\\SuiteLoader\\:\\:getMethodTests\", caught \"Throwable\" must be rethrown\\. Either catch a more specific exception or add a \"throw\" clause in the \"catch\" block to propagate the exception\\. More info\\: http\\://bit\\.ly/failloud$#"
+			message: "#^Parameter \\#4 \\$coverageClover of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Runners/PHPUnit/Options.php
+
+		-
+			message: "#^Parameter \\#5 \\$coverageCobertura of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Runners/PHPUnit/Options.php
+
+		-
+			message: "#^Parameter \\#6 \\$coverageCrap4j of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Runners/PHPUnit/Options.php
+
+		-
+			message: "#^Parameter \\#7 \\$coverageHtml of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Runners/PHPUnit/Options.php
+
+		-
+			message: "#^Parameter \\#8 \\$coveragePhp of class ParaTest\\\\Runners\\\\PHPUnit\\\\Options constructor expects string\\|null, array\\<string\\>\\|bool\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Runners/PHPUnit/Options.php
+
+		-
+			message: "#^Call to deprecated method cacheDirectory\\(\\) of class PHPUnit\\\\TextUI\\\\XmlConfiguration\\\\CodeCoverage\\\\CodeCoverage\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/SuiteLoader.php
 
 		-
-			message:
-				"""
-					#^Usage of deprecated trait PHPUnit\\\\Framework\\\\TestListenerDefaultImplementation in class ParaTest\\\\Runners\\\\PHPUnit\\\\Worker\\\\NullPhpunitPrinter\\:
-					The `TestListener` interface is deprecated$#
-				"""
+			message: "#^Call to deprecated method hasCacheDirectory\\(\\) of class PHPUnit\\\\TextUI\\\\XmlConfiguration\\\\CodeCoverage\\\\CodeCoverage\\.$#"
 			count: 1
-			path: src/Runners/PHPUnit/Worker/NullPhpunitPrinter.php
+			path: src/Runners/PHPUnit/SuiteLoader.php
 
 		-
 			message: "#^Property ParaTest\\\\Runners\\\\PHPUnit\\\\Worker\\\\RunnerWorker\\:\\:\\$process type has no value type specified in iterable type Symfony\\\\Component\\\\Process\\\\Process\\.$#"
@@ -209,12 +191,12 @@ parameters:
 			path: src/Runners/PHPUnit/Worker/RunnerWorker.php
 
 		-
-			message: "#^Property ParaTest\\\\Runners\\\\PHPUnit\\\\Worker\\\\WrapperWorker\\:\\:\\$process type has no value type specified in iterable type Symfony\\\\Component\\\\Process\\\\Process\\.$#"
+			message: "#^Property ParaTest\\\\Runners\\\\PHPUnit\\\\Worker\\\\WrapperWorker\\:\\:\\$input type has no value type specified in iterable type Symfony\\\\Component\\\\Process\\\\InputStream\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Worker/WrapperWorker.php
 
 		-
-			message: "#^Property ParaTest\\\\Runners\\\\PHPUnit\\\\Worker\\\\WrapperWorker\\:\\:\\$input type has no value type specified in iterable type Symfony\\\\Component\\\\Process\\\\InputStream\\.$#"
+			message: "#^Property ParaTest\\\\Runners\\\\PHPUnit\\\\Worker\\\\WrapperWorker\\:\\:\\$process type has no value type specified in iterable type Symfony\\\\Component\\\\Process\\\\Process\\.$#"
 			count: 1
 			path: src/Runners/PHPUnit/Worker/WrapperWorker.php
 
@@ -229,12 +211,12 @@ parameters:
 			path: test/TestBase.php
 
 		-
-			message: "#^Offset 'TEST_TOKEN' does not exist on array\\('PARATEST' \\=\\> 1, \\?'TEST_TOKEN' \\=\\> int, \\?'UNIQUE_TEST_TOKEN' \\=\\> string\\)\\.$#"
+			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsString\\(\\) with string will always evaluate to true\\.$#"
 			count: 1
 			path: test/Unit/Runners/PHPUnit/OptionsTest.php
 
 		-
-			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsString\\(\\) with string will always evaluate to true\\.$#"
+			message: "#^Offset 'TEST_TOKEN' does not exist on array\\('PARATEST' \\=\\> 1, \\?'TEST_TOKEN' \\=\\> int, \\?'UNIQUE_TEST_TOKEN' \\=\\> string\\)\\.$#"
 			count: 1
 			path: test/Unit/Runners/PHPUnit/OptionsTest.php
 

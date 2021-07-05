@@ -15,10 +15,9 @@ use ReflectionMethod;
  */
 final class ParsedClassTest extends TestBase
 {
-    /** @var ParsedClass  */
-    private $class;
+    private ParsedClass $class;
     /** @var ReflectionMethod[]  */
-    private $methods;
+    private array $methods;
 
     public function setUpTest(): void
     {

@@ -39,7 +39,7 @@ use ParaTest\Runners\PHPUnit\Worker\WrapperWorker;
         }
 
         $arguments = unserialize($command);
-        (new PHPUnit\TextUI\Command())->run($arguments, false);
+        (new PHPUnit\TextUI\Application())->run($arguments, false);
 
         fwrite($writeTo, WrapperWorker::TEST_EXECUTED_MARKER);
         fflush($writeTo);

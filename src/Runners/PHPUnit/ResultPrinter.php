@@ -46,73 +46,54 @@ final class ResultPrinter
      *
      * @var ExecutableTest[]
      */
-    private $suites = [];
+    private array $suites = [];
 
-    /** @var LogInterpreter */
-    private $results;
+    private LogInterpreter $results;
 
     /**
      * The number of tests results currently printed.
      * Used to determine when to tally current results
      * and start a new row.
-     *
-     * @var int
      */
-    private $numTestsWidth = 0;
+    private int $numTestsWidth = 0;
 
     /**
      * Used for formatting results to a given width.
-     *
-     * @var int
      */
-    private $maxColumn = 0;
+    private int $maxColumn = 0;
 
     /**
      * The total number of cases to be run.
-     *
-     * @var int
      */
-    private $totalCases = 0;
+    private int $totalCases = 0;
 
     /**
      * The current column being printed to.
-     *
-     * @var int
      */
-    private $column = 0;
+    private int $column = 0;
 
     /**
      * The total number of cases printed so far.
-     *
-     * @var int
      */
-    private $casesProcessed = 0;
+    private int $casesProcessed = 0;
 
     /**
      * Number of columns.
-     *
-     * @var int
      */
-    private $numberOfColumns = 80;
+    private int $numberOfColumns = 80;
 
     /**
      * Number of skipped or incomplete tests.
-     *
-     * @var int
      */
-    private $totalSkippedOrIncomplete = 0;
+    private int $totalSkippedOrIncomplete = 0;
 
     /**
      * Do we need to try to process skipped/incompleted tests.
-     *
-     * @var bool
      */
-    private $processSkipped = false;
+    private bool $processSkipped = false;
 
-    /** @var OutputInterface */
-    private $output;
-    /** @var Options */
-    private $options;
+    private OutputInterface $output;
+    private Options $options;
     /** @var resource|null */
     private $teamcityLogFileHandle;
 
@@ -452,31 +433,13 @@ final class ResultPrinter
 
     private function printFeedbackItemColor(string $item): void
     {
-        $buffer = $item;
-        switch ($item) {
-            case 'E':
-                $buffer = $this->colorizeTextBox('fg-red, bold', $item);
-
-                break;
-
-            case 'F':
-                $buffer = $this->colorizeTextBox('bg-red, fg-white', $item);
-
-                break;
-
-            case 'W':
-            case 'I':
-            case 'R':
-                $buffer = $this->colorizeTextBox('fg-yellow, bold', $item);
-
-                break;
-
-            case 'S':
-                $buffer = $this->colorizeTextBox('fg-cyan, bold', $item);
-
-                break;
-        }
-
+        $buffer = match ($item) {
+            'E' => $this->colorizeTextBox('fg-red, bold', $item),
+            'F' => $this->colorizeTextBox('bg-red, fg-white', $item),
+            'W', 'I', 'R' => $this->colorizeTextBox('fg-yellow, bold', $item),
+            'S' => $this->colorizeTextBox('fg-cyan, bold', $item),
+            default => $item,
+        };
         $this->output->write($buffer);
     }
 
@@ -617,6 +580,7 @@ final class ResultPrinter
         $lines = preg_split('/\r\n|\r|\n/', $buffer);
         assert(is_array($lines));
         $padding = max(array_map('\\strlen', $lines));
+        assert($padding !== false);
 
         $styledLines = [];
         foreach ($lines as $line) {

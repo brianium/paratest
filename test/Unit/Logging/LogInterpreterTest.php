@@ -18,8 +18,7 @@ use function array_pop;
  */
 final class LogInterpreterTest extends ResultTester
 {
-    /** @var LogInterpreter */
-    private $interpreter;
+    private LogInterpreter $interpreter;
 
     protected function setUpInterpreter(): void
     {

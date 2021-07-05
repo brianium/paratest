@@ -8,12 +8,13 @@ use ParaTest\Parser\NoClassInFileException;
 use ParaTest\Parser\ParsedClass;
 use ParaTest\Parser\Parser;
 use PHPUnit\Framework\ExecutionOrderDependency;
+use PHPUnit\Metadata\Api\DataProvider;
+use PHPUnit\Metadata\Api\Dependencies;
+use PHPUnit\Metadata\Api\Groups;
 use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\FilterMapper;
-use PHPUnit\TextUI\XmlConfiguration\Configuration;
+use PHPUnit\TextUI\XmlConfiguration\LoadedFromFileConfiguration;
 use PHPUnit\TextUI\XmlConfiguration\PhpHandler;
 use PHPUnit\TextUI\XmlConfiguration\TestSuite;
-use PHPUnit\Util\FileLoader;
-use PHPUnit\Util\Test;
 use ReflectionMethod;
 use RuntimeException;
 use SebastianBergmann\CodeCoverage\Filter;
@@ -54,29 +55,21 @@ final class SuiteLoader
      *
      * @var string[]
      */
-    private $files = [];
+    private array $files = [];
 
     /** @var string[]|null */
-    private $suitesName = null;
+    private ?array $suitesName = null;
 
     /**
      * The collection of parsed test classes.
      *
      * @var array<string, ExecutableTest>
      */
-    private $loadedSuites = [];
+    private array $loadedSuites = [];
 
-    /**
-     * The configuration.
-     *
-     * @var Configuration|null
-     */
-    private $configuration;
-
-    /** @var Options */
-    private $options;
-    /** @var OutputInterface */
-    private $output;
+    private ?LoadedFromFileConfiguration $configuration;
+    private Options $options;
+    private OutputInterface $output;
 
     public function __construct(Options $options, OutputInterface $output)
     {
@@ -197,7 +190,7 @@ final class SuiteLoader
                     if (count($suite->getFunctions()) > 0) {
                         $loadedSuites[$class->getParentsCount()][$path] = $suite;
                     }
-                } catch (NoClassInFileException $e) {
+                } catch (NoClassInFileException) {
                     continue;
                 }
             }
@@ -256,7 +249,7 @@ final class SuiteLoader
                 continue;
             }
 
-            $dependencies = Test::getDependencies($class->getName(), $method->getName());
+            $dependencies = Dependencies::dependencies($class->getName(), $method->getName());
             if (count($dependencies) !== 0) {
                 $this->addDependentTestsToBatchSet($batches, $dependencies, $tests);
             } else {
@@ -319,14 +312,14 @@ final class SuiteLoader
     {
         $result = [];
 
-        $groups = Test::getGroups($class->getName(), $method->getName());
+        $groups = (new Groups())->groups($class->getName(), $method->getName());
         if (! $this->testMatchGroupOptions($groups)) {
             return $result;
         }
 
         try {
-            $providedData = Test::getProvidedData($class->getName(), $method->getName());
-        } catch (Throwable $throwable) {
+            $providedData = (new DataProvider())->providedData($class->getName(), $method->getName());
+        } catch (Throwable) {
             $providedData = null;
         }
 
@@ -470,7 +463,7 @@ final class SuiteLoader
             return;
         }
 
-        FileLoader::checkAndLoad($bootstrap);
+        include_once $bootstrap;
     }
 
     private function warmCoverageCache(): void

@@ -33,8 +33,7 @@ final class ParaTestCommand extends Command
         'WrapperRunner' => WrapperRunner::class,
     ];
 
-    /** @var string */
-    private $cwd;
+    private string $cwd;
 
     public function __construct(string $cwd, ?string $name = null)
     {
